@@ -14,7 +14,7 @@ PFP (ProFile Picture) is the new craze in the blockchain world and PIFPY is the 
 - share your avatar/profile with the world
 - sell your PFPs amd make tons of money
 
-**PIFPY uses the contract address 0.0.34735480 in Testnet for quick interaction with profiles:**
+**PIFPY uses contract address 0.0.34735480 in Testnet for quick interaction with profiles:**
 
     pifpy = new PIFPY()
     pifpy.login()
