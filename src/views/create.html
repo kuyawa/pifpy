@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIFPY</title>
+    <meta charset="utf-8">
+    <meta name="application-name" content="PIFPY"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1, shrink-to-fit=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" href="/media/favicon.jpg">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-76x76.png"   sizes="76x76">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-120x120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-152x152.png" sizes="152x152">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="shortcut icon"    href="/media/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="stylesheet" type="text/css" href="/styles/common.css">
+</head>
+<body>
+
+<header>
+    <div id="brand">
+        <a href="/"><img id="logo" src="/media/logo-dapp.jpg" height="64px"></a>
+        <div id="menu">
+            <li><a href="/create">Create</a></li>
+            <li><a href="/explore">Explore</a></li>
+            <li><a href="/market">Marketplace</a></li>
+            <li><a href="/faq">FAQ</a></li>
+        </div>
+    </div>
+    <div id="links">
+        <li><a noref id="menu-account" onclick="onLogin()">Login</a></li>
+        <li><a href="/profile" id="link-profile" class="disabled" disabled>Profile</a></li>
+    </div>
+</header>
+
+<content>
+
+    <div id="profile">
+        <div class="proform">
+            <h1 class="title">CREATE YOUR PROFILE</h3>
+            <div class="user">
+                <div class="foto">
+                    <img id="avatar-view" src="/media/icon-foto.png">
+                </div>
+                <div class="data">
+                    <li><label>User Name</label><input type="text" id="username"><button id="action-check" class="mini" onclick="onCheck()">Check</button></li>
+                    <li><label>Avatar</label><input type="file" id="avatar-file" onchange="preview(this, 'avatar-view')"></li>
+                    <li><p class="small">Preferred size 720x720</p></li>
+                </div>
+            </div>
+            <li id="msg-create" class="message">Your profile will cost 1HBAR</li>
+            <li class="center"><button id="action-new" class="action" onclick="onCreate()">CREATE PROFILE</button></li>
+
+            <hr class="spacer">
+            
+            <h1 class="title">ADD MORE PROPERTIES</h3>
+            <table id="metadata">
+                <tr><th>KEY</th><th>VALUE</th></tr>
+                <tr><td><input type="text" id="key0" value="Twitter"></td>  <td><input type="text" id="val0"></td></tr>
+                <tr><td><input type="text" id="key1" value="Instagram"></td><td><input type="text" id="val1"></td></tr>
+                <tr><td><input type="text" id="key2" value="Website"></td>  <td><input type="text" id="val2"></td></tr>
+                <tr><td><input type="text" id="key3" value="Bitcoin"></td>  <td><input type="text" id="val3"></td></tr>
+                <tr><td><input type="text" id="key4" value="Ethereum"></td> <td><input type="text" id="val4"></td></tr>
+                <tr><td><input type="text" id="key5" value=""></td><td><input type="text" id="val5"></td></tr>
+                <tr><td><input type="text" id="key6" value=""></td><td><input type="text" id="val6"></td></tr>
+                <tr><td><input type="text" id="key7" value=""></td><td><input type="text" id="val7"></td></tr>
+                <tr><td><input type="text" id="key8" value=""></td><td><input type="text" id="val8"></td></tr>
+                <tr><td><input type="text" id="key9" value=""></td><td><input type="text" id="val9"></td></tr>
+            </table>
+            <li id="msg-fields" class="message">You can add up to 10 properties to your profile</li>
+            <li class="center"><button id="action-key" class="action disabledx" onclick="onProperties()">ADD PROPERTIES</button></li>
+        </div>
+    </div>
+
+</content>
+
+<footer>
+    <div class="rights">&copy;2022 PIFPY</div>
+</footer>
+<script src="/scripts/hashconnect.js"></script>
+<script src="/scripts/ipfs.min.js"></script>
+<script src="/scripts/pifpy.js"></script>
+<script src="/scripts/create.js"></script>
+<script src="/scripts/main.js"></script>
+</body>
+</html>

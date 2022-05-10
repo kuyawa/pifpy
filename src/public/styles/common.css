@@ -1,0 +1,130 @@
+body { width: 1280px; margin: 0 auto; font: normal 1em helvetica, sans-serif; background-color: #000; color: #fafafa; }
+
+header  { margin: 10px 0; }
+content { display: block; margin: 100px 0; }
+footer  { margin: 100px 0; text-align: center; }
+
+a { text-decoration: none; color: #ddd; }
+a:hover { color: #fff; }
+a.disabled { color: #666; pointer-events: none; }
+hr { border: none; border-top: 1px solid #ddd; }
+h1,h2,h3,h4,h5,h6 { font-weight: lighter; }
+li { list-style-type: none; }
+
+.small     { font-size: small; }
+.note      { color: #369; }
+.center    { text-align: center; }
+.spacer    { margin: 40px 0; border: none; }
+.fullwidth { width: 100%; }
+
+.action { display: inline-block; margin: 20px; padding: 10px 30px; background-color: #f06; color: #fff; border: none; border-radius: 4px; font-size: 1.2em; font-weight: 200; text-align: center; cursor: pointer; }
+.action.disabled { color: #888; background-color: #444; pointer-events: none; }
+.mini   { display: inline-block; padding: 2px 20px; background-color: #f06; color: #fff; border: none; border-radius: 4px; font-size: 0.8em; font-weight: 200; text-align: center; cursor: pointer; }
+
+.avatars { margin-top: 100px; display: grid; grid-gap: 50px; grid-template-columns: auto auto auto auto auto; background-color: #000; }
+.avatar  { width: 170px; height: 170px; padding: 8px; background: linear-gradient(135deg, #f44, #55f); border-radius: 6px; }
+.frame   { display: inline-grid; text-align: center; }
+.frame label  { font-weight: lighter; font-size: 90%; text-align: center; }
+
+/* HEADER  */
+header { display: flex; flex-direction: row; justify-content: stretch; align-content: stretch; }
+#brand { width: 50%; display: flex; flex-direction: row; justify-content: flex-start; align-content: flex-start; }
+#links { width: 50%; display: flex; flex-direction: row; justify-content: flex-end; align-content: flex-end; align-items: center; }
+#links li { display: inline-block; margin: 8px; padding: 0 10px; }
+#menu { margin-left: 16px; display: flex; flex-direction: row; justify-content: flex-start; align-content: flex-start; align-items: center; }
+#menu  li { display: inline-block; margin: 8px; padding: 0 10px; }
+#logo  { height: 64px; }
+#menu-account { cursor: pointer; }
+
+/* HERO  */
+.hero { width: 1280px; height: 720px; text-align: center;  background: url('/media/herox.jpg') center 100% no-repeat; }
+/*#action-create  { position: absolute; width: 220px; bottom: 40px; left: 480px; }*/
+#action-create  { width: 220px; margin-top: 630px; }
+#action-explore { margin: 40px auto; width: 220px; }
+#action-new {  }
+#action-mod {  }
+#action-del { margin-top: 40px; background-color: #800; }
+.button-buy { width: 170px; margin: 10px auto; }
+
+/* CONTENT */
+.latest { margin-top: 150px; text-align: center; }
+.title { text-align: center; font-size: 2em; font-weight: 200; }
+.subtitle { }
+.info { width: 700px; margin: 100px auto; font-weight: 200; text-align: center; }
+.accent { color: #f5a; }
+
+/* PROFILE */
+#profile  { width: 700px; margin: 0 auto; background: linear-gradient(135deg, #f44, #55f); border-radius: 6px; }
+.proform  { margin: 10px; padding: 50px; background-color: #000; opacity: 0.8; }
+.proform .title  { margin-bottom: 50px; }
+#metadata { width: 100%; margin-top: 50px; }
+#metadata td:nth-child(1) { width: 40%; }
+#metadata td:nth-child(2) { width: 60%; }
+#metadata td input { width: 90%; }
+#profile label { display: inline-block; width: 100px; }
+input { border: none; border-bottom: 1px solid #f55; background-color: transparent; color: #fff; }
+input[type="file"] { border: none; }
+input#avatar { width: 260px; }
+
+.user { display: flex; flex-direction: row; }
+.foto { margin-right: 30px; }
+.foto img { width: 150px; height: 150px; padding: 1px; border: 1px solid #f55; }
+.data {  }
+.data li { margin-bottom: 10px; }
+#action-new { margin-top: 40px; }
+#action-key { margin-top: 40px; }
+.message { margin-top: 40px; padding: 4px; background-color: #333; text-align: center; opacity: 0.6; }
+
+.partners { display: flex; flex-direction: column; justify-content: center; align-content: center; align-items: center; text-align: center; margin-top: 100px; border-radius: 8px; }
+.partner  { border-radius: 20px; }
+.notfound { display: flex; flex-direction: column; justify-content: center; align-content: center; align-items: center; }
+
+.faq { width: 550px; margin: 0 auto; text-align: left; }
+.faq li { list-style-type: square; }
+.faq pre { text-align: left; }
+
+/* FOOTER */
+.rights {
+  font-size: 2em;
+  background: -webkit-linear-gradient(#f44, #55f);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+  background: -moz-linear-gradient(#f44, #55f);
+              -moz-background-clip: text;
+              -moz-text-fill-color: transparent;
+}
+
+
+/* MOBILE */
+@media screen and (max-width: 1280px) {
+    body { width: 100%; }
+    #links li { margin: 8px; padding: 0 5px; }
+    #menu  li { margin: 8px; padding: 0 5px; }
+    .hero { width: auto; background-repeat: no-repeat; background-size: 100%; background-position: center; }
+    .avatars { grid-template-columns: auto auto auto; }
+}
+
+@media screen and (max-width: 720px) {
+    body { width: 100%; }
+    header { font-size: 80%; flex-direction: column; }
+    content { margin-top: 0; }
+    #logo { height: 40px; }
+    #brand { display: block; width: 100%; text-align: center; justify-content: center; align-content: center; align-items: center; }
+    #links { display: block; width: 100%; text-align: center; justify-content: center; align-content: center; align-items: center; }
+    #links li { margin: 4px; padding: 0 5px; }
+    #menu { display: block; text-align: center; }
+    #menu  li { margin: 4px; padding: 0 5px; }
+    .hero { width: auto; height: 400px; background-repeat: no-repeat; background-size: 100%; background-position: center; }
+    #action-create { margin-top: 430px; }
+    .avatars { grid-template-columns: auto auto; grid-gap: 50px 0; }
+    .info { width: 90%; }
+    .subtitle { width: auto; margin: 5%; }
+    .partner { width: 90%; }
+    .faq { width: auto; margin: 0 5%; text-align: left; }
+    #profile { width: auto; }
+    .proform { padding: 50px 20px; }
+    .user { flex-direction: column; }
+    .foto { margin-bottom: 50px; text-align: center; }
+    .data { text-align: center; }
+    #username { width: 100px; }
+}

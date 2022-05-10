@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIFPY</title>
+    <meta charset="utf-8">
+    <meta name="application-name" content="PIFPY"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1, shrink-to-fit=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" href="/media/favicon.jpg">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-76x76.png"   sizes="76x76">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-120x120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-152x152.png" sizes="152x152">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="shortcut icon"    href="/media/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="stylesheet" type="text/css" href="/styles/common.css">
+</head>
+<body>
+
+<header>
+    <div id="brand">
+        <a href="/"><img id="logo" src="/media/logo-dapp.jpg" height="64px"></a>
+        <div id="menu">
+            <li><a href="/create">Create</a></li>
+            <li><a href="/explore">Explore</a></li>
+            <li><a href="/market">Marketplace</a></li>
+            <li><a href="/faq">FAQ</a></li>
+        </div>
+    </div>
+    <div id="links">
+        <li><a noref id="menu-account" onclick="onLogin()">Login</a></li>
+        <li><a href="/profile" id="link-profile" class="disabled" disabled>Profile</a></li>
+    </div>
+</header>
+
+<content>
+
+    <div id="profile">
+        <div class="proform">
+            <h1 class="title">YOUR PROFILE</h3>
+            <div class="user">
+                <div class="foto">
+                    <a href="https://ipfs.io/ipfs/<%=profile.avatar.substr(5)%>" target="_blank"><img id="avatar-view" src="/media/avatars/<%=profile.avatar.substr(5)%>.jpg"></a>
+                </div>
+                <div class="data">
+                    <li><label>User Name</label><input type="text" id="username" value="<%=profile.username%>"></li>
+                    <li><label>Avatar</label><input type="text" id="avatar" value="<%=profile.avatar%>"></li>
+                    <li><label>Price</label><input type="text" id="price" value="<%=profile.price%>"><button id="action-price" class="mini" onclick="onSale()">FOR SALE</button></li>
+                </div>
+            </div>
+            <li id="msg-update" class="message">You can set the price to offer it on sale</li>
+            <li class="center"><button id="action-del" class="mini" onclick="onDelete()">DELETE PROFILE</button></li>
+
+            <hr class="spacer">
+            
+            <h1 class="title">PROFILE PROPERTIES</h3>
+            <table id="metadata">
+                <tr><th>KEY</th><th>VALUE</th></tr>
+                <% let cnt=0; Object.keys(profile.metadata).forEach(function(key){ %>
+                <tr><td><input type="text" id="key<%=cnt%>" value="<%=key%>"></td><td><input type="text" id="val<%=cnt%>" value="<%=profile.metadata[key]%>"></td></tr>
+                <% cnt+=1; }) %>
+                <% for(; cnt<10; cnt++){ %>
+                <tr><td><input type="text" id="key<%=cnt%>" value=""></td><td><input type="text" id="val<%=cnt%>" value=""></td></tr>
+                <% } %>
+            </table>
+            <li id="msg-fields" class="message">You can add up to 10 properties to your profile</li>
+            <li class="center"><button id="action-key" class="action" onclick="onProperties()">UPDATE PROPERTIES</button></li>
+        </div>
+    </div>
+
+</content>
+
+<footer>
+    <div class="rights">&copy;2022 PIFPY</div>
+</footer>
+<script src="/scripts/hashconnect.js"></script>
+<script src="/scripts/ipfs.min.js"></script>
+<script src="/scripts/pifpy.js"></script>
+<script src="/scripts/profile.js"></script>
+<script src="/scripts/main.js"></script>
+</body>
+</html>

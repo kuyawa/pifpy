@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIFPY</title>
+    <meta charset="utf-8">
+    <meta name="application-name" content="PIFPY"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1, shrink-to-fit=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" href="/media/favicon.jpg">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-76x76.png"   sizes="76x76">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-120x120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-152x152.png" sizes="152x152">
+    <link rel="apple-touch-icon" href="/media/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="shortcut icon"    href="/media/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+    <link rel="stylesheet" type="text/css" href="/styles/common.css">
+</head>
+<body>
+
+<header>
+    <div id="brand">
+        <a href="/"><img id="logo" src="/media/logo-dapp.jpg" height="64px"></a>
+        <div id="menu">
+            <li><a href="/create">Create</a></li>
+            <li><a href="/explore">Explore</a></li>
+            <li><a href="/market">Marketplace</a></li>
+            <li><a href="/faq">FAQ</a></li>
+        </div>
+    </div>
+    <div id="links">
+        <li><a noref id="menu-account" onclick="onLogin()">Login</a></li>
+        <li><a href="/profile" id="link-profile" class="disabled" disabled>Profile</a></li>
+    </div>
+</header>
+
+<content>
+
+    <div class="faq">
+
+        <h1>With PIFPY you can:</h1>
+
+        <li>use your crypto wallet as authenticator</li>
+        <li>reserve a unique user name</li>
+        <li>upload an avatar to the blockchain</li>
+        <li>add extra fields like twitter, instagram, website, crypto addresses, etc</li>
+        <li>any key/value pair can be used as metadata</li>
+        <li>share your avatar/profile with the world</li>
+        <li>sell your PFPs and make tons of money</li>
+
+        <h4>PIFPY will use an SDK for easy interaction with profiles:</h4>
+        <pre>
+    pifpy = new PIFPY()
+    pifpy.login()
+    pifpy.newUser(name, avatar)
+    pifpy.setUserName(name)
+    pifpy.upload(file)
+    pifpy.setAvatar(fileId)
+    pifpy.setValue(key,value)
+    pifpy.setValues(keyValueList)
+    pifpy.getValue(address,key)
+    pifpy.getSelf()
+    pifpy.getUser(address)
+    pifpy.getUserByName(name)
+    pifpy.deleteUser()
+    pifpy.transfer(toAddress)
+        </pre>
+
+        <h1>Profile Prices</h1>
+        <li>1 char user name for 1000 hbars</li>
+        <li>2 chars user name for  500 hbars</li>
+        <li>3 chars user name for  100 hbars</li>
+        <li>4 chars user name for   50 hbars</li>
+        <li>5 chars user name for   10 hbars</li>
+        <li>6 chars name or more for 1 hbar</li>
+        <p class="small note">* Prices may vary on demand</small>
+
+        <div class="roadmap">
+            <h1>Roadmap</h1>
+            <li>1st stage: MVP and social debut [end of Hackathon]</li>
+            <li>2nd stage: SDK and NPM package [July 1st 2022]</li>
+            <li>3rd stage: PFP Marketplace [Sep 1st 2022]</li>
+            <li>4th stage: Multi-chain Dapp [Dec 1st 2022]</li>
+        </div>
+        
+        <div class="source">
+            <h1>Source Code</h1>
+            <a href="https://github.com/kuyawa/pifpy">https://github.com/kuyawa/pifpy</a>
+
+            <h1>PIFPY Hedera Smart Contract</h1>
+            <a>https://github.com/kuyawa/pifpy/master/contracts/avatar.sol</a>
+        </div>
+    </div>
+
+</content>
+
+<footer>
+    <div class="rights">&copy;2022 PIFPY</div>
+</footer>
+<script src="/scripts/hashconnect.js"></script>
+<script src="/scripts/pifpy.js"></script>
+<script src="/scripts/main.js"></script>
+</body>
+</html>
