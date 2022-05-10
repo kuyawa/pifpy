@@ -87,23 +87,23 @@ async function main(){
     });
 
     app.get('/profile', async (req, res) => { 
-    	console.warn('/profile', req.cookies.user);
+        console.warn('/profile', req.cookies.user);
         try {
             config.user = req.cookies.user;
             if(!req.cookies.user){
-    			console.warn('redirect /create');
-            	res.redirect('/create');
-            	return;
+                console.warn('redirect /create');
+                res.redirect('/create');
+                return;
             }
             //let profile = await api.getUserById(config.user); // From contract
             let profile = await DB.getProfile(config.user); // From DB
             if(!profile || profile.error || profile.created=='0'){
-    			console.warn('redirect /create');
-            	res.redirect('/create');
+                console.warn('redirect /create');
+                res.redirect('/create');
             } else {
-		    	console.warn('Metadata', profile.metadata);
-            	if(profile.metadata) { profile.metadata = JSON.parse(profile.metadata); }
-	            res.render('profile.html', {config, profile});
+                console.warn('Metadata', profile.metadata);
+                if(profile.metadata) { profile.metadata = JSON.parse(profile.metadata); }
+                res.render('profile.html', {config, profile});
             }
         } catch(ex) {
             console.error(new Date(), 'Server error', ex.message);
@@ -112,23 +112,23 @@ async function main(){
     });
 
     app.get('/profile/:user', async (req, res) => { 
-    	let user = req.params.user;
-    	console.warn('/profile/'+user);
+        let user = req.params.user;
+        console.warn('/profile/'+user);
         try {
             config.user = req.cookies.user;
             let profile = null;
-	    	if(user.startsWith('0.')){
-            	profile = await DB.getProfile(user);
-	    	} else {
-            	profile = await DB.getProfileByName(user.toLowerCase());
-	    	}
-            if(!profile || profile.error || profile.created=='0'){
-    			console.warn('profile notfound');
-				res.status(404).render('notfound.html')
-            	return;
+            if(user.startsWith('0.')){
+                profile = await DB.getProfile(user);
             } else {
-            	if(profile.metadata) { profile.metadata = JSON.parse(profile.metadata); }
-	            res.render('profview.html', {config, profile});
+                profile = await DB.getProfileByName(user.toLowerCase());
+            }
+            if(!profile || profile.error || profile.created=='0'){
+                console.warn('profile notfound');
+                res.status(404).render('notfound.html')
+                return;
+            } else {
+                if(profile.metadata) { profile.metadata = JSON.parse(profile.metadata); }
+                res.render('profview.html', {config, profile});
             }
         } catch(ex) {
             console.error(new Date(), 'Server error', ex.message);
@@ -171,26 +171,26 @@ async function main(){
     });
 
     app.get('/api/txnewuser/:name/:avatar', async (req, res) => {
-    	let name = req.params.name;
-    	let avtr = req.params.avatar;
+        let name = req.params.name;
+        let avtr = req.params.avatar;
         let rex  = await api.txNewUser(name, avtr);
         res.status(200).end(JSON.stringify(rex));
     });
 
     app.get('/api/newuser/:actid/:name/:avatar', async (req, res) => {
-    	let actid = req.params.actid;
-    	let name  = req.params.name;
-    	let avtr  = req.params.avatar;
-  		let rex   = await DB.newProfile({actid:actid, username:name, avatar:avtr});
-		console.warn('New profile', actid, name, avtr, rex);
+        let actid = req.params.actid;
+        let name  = req.params.name;
+        let avtr  = req.params.avatar;
+        let rex   = await DB.newProfile({actid:actid, username:name, avatar:avtr});
+        console.warn('New profile', actid, name, avtr, rex);
         res.status(200).end(JSON.stringify(rex));
     });
 
     app.post('/api/upload/:fileid', async (req, res) => {
-    	let fileId = req.params.fileid;
-    	console.warn('FileId', fileId);
+        let fileId = req.params.fileid;
+        console.warn('FileId', fileId);
 
-    	try {
+        try {
             if (!req.files || !req.files.file) { return res.status(400).send(JSON.stringify({error:'No files uploaded'})); }
             let file = req.files.file;
             console.warn('File', req.files.file);
@@ -217,25 +217,25 @@ async function main(){
     });
 
     app.post('/api/metadata', async (req, res) => {
-    	let meta = req.body;
-    	console.warn('Body', meta);
+        let meta = req.body;
+        console.warn('Body', meta);
         let user = req.cookies.user;
-    	console.warn('User', user);
+        console.warn('User', user);
         if(!user) { return res.status(200).send(JSON.stringify({error:'User not found'})); }
-    	let ok = await DB.modProfile({actid:user, metadata:JSON.stringify(meta)});
-    	if(!ok){ return res.status(200).send(JSON.stringify({error:'Error saving metadata'})); }
-    	res.status(200).send(JSON.stringify({status:'success'}));
+        let ok = await DB.modProfile({actid:user, metadata:JSON.stringify(meta)});
+        if(!ok){ return res.status(200).send(JSON.stringify({error:'Error saving metadata'})); }
+        res.status(200).send(JSON.stringify({status:'success'}));
     });
 
     app.get('/api/setprice/:price', async (req, res) => {
         let user  = req.cookies.user;
-    	let price = req.params.price;
-    	console.warn('User', user);
-    	console.warn('Price', price);
+        let price = req.params.price;
+        console.warn('User', user);
+        console.warn('Price', price);
         if(!user) { return res.status(200).send(JSON.stringify({error:'User not found'})); }
-    	let ok = await DB.modProfile({actid:user, price:price});
-    	if(!ok){ return res.status(200).send(JSON.stringify({error:'Error saving price'})); }
-    	res.status(200).send(JSON.stringify({status:'success'}));
+        let ok = await DB.modProfile({actid:user, price:price});
+        if(!ok){ return res.status(200).send(JSON.stringify({error:'Error saving price'})); }
+        res.status(200).send(JSON.stringify({status:'success'}));
     });
 
 
