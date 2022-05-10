@@ -29,4 +29,6 @@ PFP (ProFile Picture) is the new craze in the blockchain world and PIFPY is the 
     pifpy.getUserByName(name)
     pifpy.deleteUser()
 
+In order to interact with Pifpy you need to use [HashPack Wallet](https://www.hashpack.app) for Hedera and have some funds in Testnet
+
 ## Start creating your universal profile right now in [pifpy.com](https://pifpy.com)
