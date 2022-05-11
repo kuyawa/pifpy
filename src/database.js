@@ -280,6 +280,13 @@ async function setProfileInactive(actid) {
     return data;
 }
 
+async function transferProfile(actid, destin) { 
+    let sql  = 'Update profiles set actid=$2, price=0, metadata=null where actid = $1';
+    let pars = [actid, destin];
+    let data = await DS.update(sql, pars);
+    return data;
+}
+
 
 
 //---- EXPORTS

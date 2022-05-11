@@ -2,7 +2,7 @@
 
 const config = {
 	network: 'testnet',
-	contractId: '0.0.34735480'
+	contractId: '0.0.34744982'
 };
 
 const appMetadata = {
@@ -302,6 +302,13 @@ async function getErrorMessage(txid){
         console.log('No error');
         return '';
     }
+}
+
+async function checkTxError(txId, msg, msgr) {
+    let txt = await getErrorMessage(txId);
+    console.log(msg);
+    console.log('https://testnet.mirrornode.hedera.com/api/v1/contracts/results/'+txId);
+    $(msgr).innerHTML = msg+` <a href="https://testnet.mirrornode.hedera.com/api/v1/contracts/results/${txId}" target="_blank">[TX]</a> ${txt}`;
 }
 
 function alphaNum(txt) {

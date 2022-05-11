@@ -238,6 +238,20 @@ async function main(){
         res.status(200).send(JSON.stringify({status:'success'}));
     });
 
+    app.get('/api/transfer/:actid', async (req, res) => {
+        let buyer  = req.cookies.user;
+        let seller = req.params.actid;
+        console.warn('Buyer', buyer);
+        console.warn('Seller', seller);
+        if(!buyer) { return res.status(200).send(JSON.stringify({error:'User not found'})); }
+        let pfp = await DB.getProfile(buyer);
+        console.warn('Buyer', pfp);
+        if(pfp){ return res.status(200).send(JSON.stringify({error:'Buyer profile found'})); }
+        let ok = await DB.transferProfile({actid:buyer, price:0, metadata:null});
+        if(!ok){ return res.status(200).send(JSON.stringify({error:'Error transferring profile'})); }
+        res.status(200).send(JSON.stringify({status:'success'}));
+    });
+
 
     // More stuff here
 

@@ -174,7 +174,8 @@ contract Avatar {
     }
 
     function isTaken(string memory name) public view returns (bool) {
-        address userId = UserNames[name];
+        string memory namelow = lowerCase(name);
+        address userId = UserNames[namelow];
         //require(userId!=address(0x0), 'ERR_USERNAMETAKEN');
         if(userId==address(0x0)){ return false; }
         else { return true; }
@@ -240,7 +241,8 @@ contract Avatar {
     }
 
     function getUserByName(string memory name) public view returns (string memory) {
-        address userId = UserNames[name];
+        string memory namelow = lowerCase(name);
+        address userId = UserNames[namelow];
         //require(uint160(userId)>0, 'ERR_NAMENOTFOUND');
         if(uint160(userId)==0){ return "{}"; }
         User storage user = Users[userId];
@@ -360,19 +362,20 @@ contract Avatar {
     }
 
     function transfer(address destin) external lock {
-        address userId = msg.sender;
-        User storage user1 = Users[userId];
+        address sender = msg.sender;
+        User storage user1 = Users[sender];
         require(user1.created>0, 'ERR_USERNOTFOUND');
         User storage user2 = Users[destin];
+        require(user2.created==0, 'ERR_DESTINHASPROFILE');
         user2.created  = user1.created;
         user2.userId   = destin;
         user2.userName = user1.userName;
         user2.avatar   = user1.avatar;
-        //user2.keys   = user1.keys;
-        //user2.metadata = user1.metadata;
+        user2.price    = 0;
+        // Metadata and keys gets cleared
         UserNames[user2.userName] = destin;
-        delete Users[userId];
-        emit logTransfer(userId, destin, user2.userName, block.timestamp);
+        delete Users[sender];
+        emit logTransfer(sender, destin, user2.userName, block.timestamp);
     }
 
     function buy(address seller) external payable lock {
@@ -389,8 +392,8 @@ contract Avatar {
         user2.userName = user1.userName;
         user2.avatar   = user1.avatar;
         user2.price    = 0;
-        // Metadata gets cleared
-        UserNames[user1.userName] = buyer;
+        // Metadata and keys gets cleared
+        UserNames[user2.userName] = buyer;
         delete Users[seller];
         emit logBuy(seller, buyer, user2.userName, value, block.timestamp);
     }

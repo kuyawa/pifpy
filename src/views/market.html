@@ -44,7 +44,7 @@
                         <a href="/profile/<%=item.username%>"><img class="avatar" src="/media/avatars/<%=item.avatar.substr(5)%>.jpg" loading="lazy"></a>
                         <label><%=item.username%></label>
                         <label><b><%=item.price%> HBAR</b></label>
-                        <button class="mini button-buy" onclick="onBuy()">BUY</button>
+                        <button id="action-buy" class="mini button-buy <%=config.user==item.actid?'disabled':''%>" onclick="onBuy('<%=item.actid%>', <%=item.price%>)"><%=config.user==item.actid?'YOU':'BUY'%></button>
                     </div>
                 <% }) %>
             <% } else { %>
@@ -63,6 +63,7 @@
 </footer>
 <script src="/scripts/hashconnect.js"></script>
 <script src="/scripts/pifpy.js"></script>
+<script src="/scripts/market.js"></script>
 <script src="/scripts/main.js"></script>
 </body>
 </html>

@@ -167,7 +167,7 @@ async function afterFile(name, avatar) {
         //let txt = await getErrorMessage(txId);
         showMessage('Error registering avatar');
         $('action-new').classList.remove('disabled');
-        setTimeout(checkTxNew, 5000, txId);
+        setTimeout(checkTxError, 5000, txId, 'Error creating avatar', 'msg-create');
     }
 }
 
@@ -204,20 +204,9 @@ async function afterFileSERVER(name, avatar) {
         //let txt = await getErrorMessage(txId);
         showMessage('Error registering avatar');
         $('action-new').classList.remove('disabled');
-        setTimeout(checkTxNew, 5000, txId);
+        setTimeout(checkTxError, 5000, txId, 'Error creating avatar', 'msg-create');
     }
 }
-
-async function checkTxNew(txId) {
-    let txt = await getErrorMessage(txId);
-    showMessage(`Error registering avatar <a href="https://testnet.mirrornode.hedera.com/api/v1/contracts/results/${txId}" target="_blank">[TX]</a> ${txt}`);
-}
-
-async function checkTxKey(txId) {
-    let txt = await getErrorMessage(txId);
-    showMessage(`Error saving properties <a href="https://testnet.mirrornode.hedera.com/api/v1/contracts/results/${txId}" target="_blank">[TX]</a> ${txt}`);
-}
-
 
 async function onProperties() {
     addProperties();
@@ -291,9 +280,8 @@ async function addProperties() {
         let rex = await res.json();
         console.log('Metadata saved', rex);
     } else {
-        //let txt = await getErrorMessage(txId);
         showMessage2('Error saving properties');
-        setTimeout(checkTxKey, 5000, txId);
+        setTimeout(checkTxError, 5000, txId, 'Error saving properties', 'msg-fields');
     }
     $('action-key').classList.remove('disabled');
 }

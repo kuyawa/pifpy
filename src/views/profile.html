@@ -48,8 +48,10 @@
                     <li><label>Price</label><input type="text" id="price" value="<%=profile.price%>"><button id="action-price" class="mini" onclick="onSale()">FOR SALE</button></li>
                 </div>
             </div>
-            <li id="msg-update" class="message">You can set the price to offer it on sale</li>
-            <li class="center"><button id="action-del" class="mini" onclick="onDelete()">DELETE PROFILE</button></li>
+            <li id="msg-update" class="message">You can sell it by setting the price or transfer it</li>
+            <li class="center"><input type="text" id="destin" placeholder="Destination account"></li>
+            <li class="center"><button id="action-send" class="action" onclick="onTransfer()">TRANSFER PROFILE</button></li>
+            <li class="center"><button id="action-del"  class="mini" onclick="onDelete()">DELETE PROFILE</button></li>
 
             <hr class="spacer">
             
