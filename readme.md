@@ -17,7 +17,7 @@ PFP (ProFile Picture) is the new craze in the blockchain world and PIFPY is the 
 
 You can check the contract code here [avatar.sol](https://github.com/kuyawa/pifpy/blob/main/src/public/contracts/avatar.sol)
 
-**PIFPY uses contract address 0.0.34735480 in Testnet**
+**PIFPY uses contract address 0.0.34744982 in Testnet**
 
 The SDK will allow you to easily make calls to the contract:
 
