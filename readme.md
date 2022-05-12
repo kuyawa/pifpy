@@ -14,11 +14,16 @@ PFP (ProFile Picture) is the new craze in the blockchain world and PIFPY is the 
 - share your avatar/profile with the world
 - sell your PFPs amd make tons of money
 
-**PIFPY uses contract address 0.0.34735480 in Testnet for quick interaction with profiles:**
+
+You can check the contract code here [avatar.sol](https://github.com/kuyawa/pifpy/blob/main/src/public/contracts/avatar.sol)
+
+**PIFPY uses contract address 0.0.34735480 in Testnet**
+
+The SDK will allow you to easily make calls to the contract:
 
     pifpy = new PIFPY()
     pifpy.login()
-    pifpy.newUser()
+    pifpy.newUser(name, avatar)
     pifpy.setUserName(name)
     pifpy.upload(file)
     pifpy.setAvatar(fileId)
@@ -28,6 +33,8 @@ PFP (ProFile Picture) is the new craze in the blockchain world and PIFPY is the 
     pifpy.getUser(address)
     pifpy.getUserByName(name)
     pifpy.deleteUser()
+    pifpy.transfer(address)
+    pifpy.buy(address)
 
 In order to interact with Pifpy you need to use [HashPack Wallet](https://www.hashpack.app) for Hedera and have some funds in Testnet
 
