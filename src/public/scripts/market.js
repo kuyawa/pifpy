@@ -12,6 +12,10 @@ async function buyProfile(actid, price) {
 	console.log('Buying profile', actid, price);
 	if(!session.accountId){ alert("Must login to buy"); return; }
 	if(session.accountId==actid){ alert("Can't buy your own profile"); return; }
+	let inf = await fetch('/api/getself');
+	let slf = await inf.json();
+	if(slf.error){ alert(slf.error); return; }
+	if(!slf.ok){ alert('You can only have one profile, delete or transfer your profile to get a new one'); return; }
     $('action-buy').classList.add('disabled');
     let act = hederasdk.AccountId.fromString(actid);
     let adr = act.toSolidityAddress();

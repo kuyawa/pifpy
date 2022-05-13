@@ -8,6 +8,22 @@ function showMessage2(txt) {
     $('msg-fields').innerHTML = txt;
 }
 
+function calcPrice(){
+    let name = $('username').value;
+    let chars = name.length;
+    let price = 1;
+    switch(chars){
+        case  1: price = 100; break;
+        case  2: price =  50; break;
+        case  3: price =  25; break;
+        case  4: price =  10; break;
+        case  5: price =   5; break;
+        default: price =   1;
+    }
+    showMessage(`Your profile will cost ${price} Hbar`);
+    $('username').value = name.toLowerCase();
+}
+
 async function onCheck() {
     checkUserName()
 }
@@ -47,6 +63,8 @@ async function createProfile() {
     if(nlow.length>20){ showMessage('User name should be up to 20 chars'); return; }
     if(!alphaNum(name)){ showMessage('User name should be lowercase a-z and 0-9 only'); return; }
     console.log(name, nlow);
+    let act = getCookie('user');
+    if(!act){ showMessage('You must be logged in to create a profile'); return; }
     let file = $('avatar-file').files[0];
     $('action-new').classList.add('disabled');
     upload(file, nlow, afterFile); // upload to ipfs
@@ -116,15 +134,16 @@ async function saveFile(fileId, file) {
 async function afterFile(name, avatar) {
     console.log('After:', name, avatar);
     // Calc payment
+    // TODO: get rates from contract
     let pay    = 1;
     let chars  = name.length || 0;
     switch(chars){
-        case  1: pay = 1000; break;
-        case  2: pay =  500; break;
-        case  3: pay =  100; break;
-        case  4: pay =   50; break;
-        case  5: pay =   10; break;
-        default: pay =    1;
+        case  1: pay = 100; break;
+        case  2: pay =  50; break;
+        case  3: pay =  25; break;
+        case  4: pay =  10; break;
+        case  5: pay =   5; break;
+        default: pay =   1;
     }
     //pay = 4;
     console.warn('PAY:', pay);
@@ -162,7 +181,9 @@ async function afterFile(name, avatar) {
     console.log('Tx response:' ,response);
     if(response.success){
         showMessage('Avatar uploaded');
-        fetch(`/api/newuser/${name}/${avatar}`);
+        let rex = await fetch(`/api/newuser/${name}/${avatar}`);
+        let rez = await rex.json();
+        console.log('Rez', rez);
     } else {
         //let txt = await getErrorMessage(txId);
         showMessage('Error registering avatar');

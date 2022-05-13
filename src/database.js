@@ -57,6 +57,21 @@ class DataServer {
         return data;
     }
 
+    async delete(sql, params) {
+        var dbc, res, data = null;
+        try {
+            dbc = await dbp.connect();
+            res = await dbc.query(sql, params);
+            data = res.rowCount;
+        } catch(ex) {
+            console.error('DB error deleting records:', ex.message);
+            data = { error: ex.message };
+        } finally {
+            if (dbc) { dbc.release(); }
+        }
+        return data;
+    }
+
     async query(sql, params) {
         var dbc, res, data = null;
         try {
@@ -280,10 +295,17 @@ async function setProfileInactive(actid) {
     return data;
 }
 
-async function transferProfile(actid, destin) { 
-    let sql  = 'Update profiles set actid=$2, price=0, metadata=null where actid = $1';
-    let pars = [actid, destin];
+async function transferProfile(source, destin) { 
+    let sql  = 'Update profiles set actid=$2, price=0, onsale=false, metadata=null where actid = $1';
+    let pars = [source, destin];
     let data = await DS.update(sql, pars);
+    return data;
+}
+
+async function deleteProfile(actid) { 
+    let sql  = 'Delete profiles where actid=$1 limit 1';
+    let pars = [actid];
+    let data = await DS.delete(sql, pars);
     return data;
 }
 

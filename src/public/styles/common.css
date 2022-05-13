@@ -16,6 +16,7 @@ li { list-style-type: none; }
 .center    { text-align: center; }
 .spacer    { margin: 40px 0; border: none; }
 .fullwidth { width: 100%; }
+.dim       { color: #888; }
 
 .action { display: inline-block; margin: 20px; padding: 10px 30px; background-color: #f06; color: #fff; border: none; border-radius: 4px; font-size: 1.2em; font-weight: 200; text-align: center; cursor: pointer; }
 .action.disabled { color: #888; background-color: #444; pointer-events: none; }
@@ -68,6 +69,9 @@ input[type="file"] { border: none; }
 input#avatar { width: 260px; }
 input#destin { width: 260px; margin-top: 20px; text-align: center; }
 
+.prices { margin: 60px 80px; padding: 0 20px 20px 100px; background-color: #211; border: 1px solid #f55; border-radius: 4px; }
+.prices li { list-style-type: disc; }
+
 .user { display: flex; flex-direction: row; }
 .foto { margin-right: 30px; }
 .foto img { width: 150px; height: 150px; padding: 1px; border: 1px solid #f55; }
@@ -84,6 +88,7 @@ input#destin { width: 260px; margin-top: 20px; text-align: center; }
 .faq { width: 550px; margin: 0 auto; text-align: left; }
 .faq li { list-style-type: square; }
 .faq pre { text-align: left; }
+
 
 /* FOOTER */
 .rights {
@@ -103,6 +108,14 @@ input#destin { width: 260px; margin-top: 20px; text-align: center; }
     #links li { margin: 8px; padding: 0 5px; }
     #menu  li { margin: 8px; padding: 0 5px; }
     .hero { width: auto; background-repeat: no-repeat; background-size: 100%; background-position: center; }
+    .avatars { grid-template-columns: auto auto auto auto auto; }
+}
+
+@media screen and (max-width: 1160px) {
+    .avatars { grid-template-columns: auto auto auto auto; }
+}
+
+@media screen and (max-width: 920px) {
     .avatars { grid-template-columns: auto auto auto; }
 }
 

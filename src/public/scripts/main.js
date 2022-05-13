@@ -208,9 +208,10 @@ function onLogin() {
 
 function setProfileLink() {
 	if(session.accountId){
-		$('menu-account').innerHTML = session.accountId+' - Logout';
+		$('menu-account').innerHTML = session.accountId;
 		$('link-profile').classList.remove('disabled');
 		//$('link-profile').href = '/profile/'+session.accountId;
+		getProfile();
 	}
 }
 
@@ -325,6 +326,15 @@ function alphaNum(txt) {
     return true;
 }
 
+async function getProfile() {
+ 	if(!session.accountId){ return; }
+ 	let res = await fetch('/api/profile/'+session.accountId);
+ 	let pfp = await res.json();
+ 	console.log('PFP', pfp);
+ 	if(pfp && !pfp.error){
+		$('menu-account').innerHTML = pfp.username;
+ 	}
+}
 
 
 async function main() {
@@ -332,10 +342,9 @@ async function main() {
 	pifpy = PIFPY();
 	pifpy.getVersion();
 	hashconnect.debug = true;
-	//connect();
 	loadLocalData()
-	connect();
-	// enable profile if available in /api/profile/:actid contract.getSelf()
+	await connect();
+	getProfile();
 }
 
 window.onload = main;

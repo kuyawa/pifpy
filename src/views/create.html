@@ -43,15 +43,24 @@
                     <img id="avatar-view" src="/media/icon-foto.png">
                 </div>
                 <div class="data">
-                    <li><label>User Name</label><input type="text" id="username"><button id="action-check" class="mini" onclick="onCheck()">Check</button></li>
+                    <li><label>User Name</label><input type="text" id="username" onkeyup="calcPrice()"><button id="action-check" class="mini" onclick="onCheck()">Check</button></li>
                     <li><label>Avatar</label><input type="file" id="avatar-file" onchange="preview(this, 'avatar-view')"></li>
                     <li><p class="small">Preferred size 720x720</p></li>
                 </div>
             </div>
             <li id="msg-create" class="message">Your profile will cost 1HBAR</li>
+            <p class="center small dim">You can only have one profile, delete or transfer your profile to get a new one</p>
             <li class="center"><button id="action-new" class="action" onclick="onCreate()">CREATE PROFILE</button></li>
 
-            <hr class="spacer">
+            <div class="prices">
+                <h2>Prices</h2>
+                <li>1 char for 100 Hbars</li>
+                <li>2 chars for 50 Hbars</li>
+                <li>3 chars for 25 Hbars</li>
+                <li>4 chars for 10 Hbars</li>
+                <li>5 chars for 5 Hbars</li>
+                <li>6 chars or more for 1 Hbar</li>
+            </div>
             
             <h1 class="title">ADD MORE PROPERTIES</h3>
             <table id="metadata">

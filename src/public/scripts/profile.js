@@ -149,6 +149,9 @@ async function deleteProfile() {
     let response = await hashconnect.sendTransaction(session.topic, transaction);
     console.log('Tx response:', response);
     if(response.success){
+        let res = await fetch('/api/delete/'+actid);
+        let rex = await res.json();
+        console.log('Profile deleted', rex);
         showMessage('Profile deleted');
     } else {
         //let txt = await getErrorMessage(txId);
